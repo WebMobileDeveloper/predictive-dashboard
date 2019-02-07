@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.recharts-legend-item-text {
+  text-transform: uppercase;
+}
+
+svg.opportunity {
+  width: 1200px;
+  height: auto;
+}
+

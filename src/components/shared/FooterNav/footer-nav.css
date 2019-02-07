@@ -1,0 +1,18 @@
+.footerBlock {
+  height: 70px;
+  border-top: 4px solid #e7e8ea;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+}
+
+.footerBlock__nav {
+  color: #aaa;
+  outline: none;
+  text-decoration: none;
+}
+
+.footerBlock__nav-active {
+  border-bottom: 2px solid #25aae2;
+  color: #25aae2;
+}

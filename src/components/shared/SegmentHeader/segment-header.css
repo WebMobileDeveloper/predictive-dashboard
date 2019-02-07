@@ -1,0 +1,18 @@
+.segmentHeader {
+    margin: 10px 10px;
+    text-align: left;
+}
+
+.segmentHeader_title {
+    margin: 0;
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.segmentHeader_title:after {
+    content: "";
+    flex: 1 1;
+    border-bottom: 2px solid #5f8dca;
+    margin: auto 10px;
+}
