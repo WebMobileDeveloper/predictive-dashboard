@@ -38,40 +38,42 @@ const styles = theme => ({
 });
 
 class SideBar extends React.Component {
-  
+
   state = { open: true };
 
-  handleClick ()  {
+  handleClick() {
     this.setState({ open: !this.state.open });
   };
 
   render() {
-  const { menu, classes, history } = this.props;
-    
-  return (
-    <Drawer type="permanent"
-            anchor="left" variant="permanent">
+    const { menu, classes, history } = this.props;
 
-      <List className="sidebar"
-            subheader={
-              <ListSubheader className={classes.row}>
-                <Avatar alt="user" src={logo} className={classes.avatar}/>
-              </ListSubheader>
-            }>
-        {menu.map((menuItem, i) =>
-        
-          i == 2 ? <div><ListItem key={menuItem.id}
-                    button
-                    divider
-                    onClick={() => {history.push(`/${menuItem.text.replace(new RegExp(' ', 'g'), '')}`); this.handleClick()}}
-                    className={styles.listItem}>
-            <ListItemIcon>
-              {menuItem.icon}
-            </ListItemIcon>
-            <ListItemText inset primary={menuItem.text} className="textColor"/>
-            {this.state.open ? <ExpandLess style={{color:'white'}} /> : <ExpandMore style={{color:'white'}}/>}
-          </ListItem>
-            {/* <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+    return (
+      <Drawer type="permanent"
+        anchor="left" variant="permanent">
+
+        <List className="sidebar"
+          subheader={
+            <ListSubheader className={classes.row}>
+              <Avatar alt="user" src={logo} className={classes.avatar} />
+            </ListSubheader>
+          }>
+          {menu.map((menuItem, i) =>
+
+            i == 2 ?
+              <div key={i}>
+                <ListItem key={menuItem.id}
+                  button
+                  divider
+                  onClick={() => { history.push(`/${menuItem.text.replace(new RegExp(' ', 'g'), '')}`); this.handleClick() }}
+                  className={styles.listItem}>
+                  <ListItemIcon>
+                    {menuItem.icon}
+                  </ListItemIcon>
+                  <ListItemText inset primary={menuItem.text} className="textColor" />
+                  {this.state.open ? <ExpandLess style={{ color: 'white' }} /> : <ExpandMore style={{ color: 'white' }} />}
+                </ListItem>
+                {/* <Collapse in={this.state.open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItem button >
                 <ListItemText inset primary="Store #17264" />
@@ -81,23 +83,23 @@ class SideBar extends React.Component {
               </ListItem>
             </List>
           </Collapse> */}
-          </div>
-          : <ListItem key={menuItem.id}
-                      button
-                      divider
-                      onClick={() => history.push(`/${menuItem.text.replace(new RegExp(' ', 'g'), '')}`)}
-                      className={styles.listItem}>
-              <ListItemIcon>
-                {menuItem.icon}
-              </ListItemIcon>
-              <ListItemText inset primary={menuItem.text} className="textColor"/>
-            </ListItem>
-        )}
-      </List>
+              </div>
+              : <ListItem key={i}
+                button
+                divider
+                onClick={() => history.push(`/${menuItem.text.replace(new RegExp(' ', 'g'), '')}`)}
+                className={styles.listItem}>
+                <ListItemIcon>
+                  {menuItem.icon}
+                </ListItemIcon>
+                <ListItemText inset primary={menuItem.text} className="textColor" />
+              </ListItem>
+          )}
+        </List>
 
-    </Drawer>
-  );
-};
+      </Drawer>
+    );
+  };
 }
 
 SideBar.propTypes = {

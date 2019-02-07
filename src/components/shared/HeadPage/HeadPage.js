@@ -2,11 +2,11 @@ import React from 'react';
 
 import './head-page.css';
 
-export const HeadPage = ({ head, subhead }) => {
+export const HeadPage = ({ head, subhead, style, headStyle, subHeadStyle }) => {
   return (
-    <div className="headPage">
-      <h2 className={'headPage_title'}>{head}</h2>
-      <h3 className={'headPage_title'}>{subhead}</h3>
+    <div className="headPage" style={style}>
+      <h2 className={'headPage_title'} style={headStyle}>{head}</h2>
+      {subhead && <h3 className={'headPage_title'} style={subHeadStyle}>{subhead}</h3>}
     </div>
   );
 };
