@@ -1,11 +1,11 @@
 import COLORS from '../constants/colors';
 
 export default {
-  fullPotential: {
+  opportunity: {
     nextWeek: [
-      { title: 'Forecast', base: 1586250 },
-      { title: '2019_Goal', base: 1206346 },
-      { title: 'Actual', base: 2211222 },
+      { title: 'Forecast', base: 107210 },
+      { title: '2019 Goal', base: 104340 },
+      { title: 'Actual', base: 108243 },
     ],
     nextMonth: [
       { title: 'Segment_1', base: 6345000, risk: 705000, opportunity: 1253333 },
@@ -26,30 +26,72 @@ export default {
       { title: 'Segment_4', base: 27360000, risk: 1440000, opportunity: 7488000 },
     ],
   },
+  fullPotential: {
+    nextWeek: {
+      1: [
+        { title: 'Forecast', base: 107210 },
+        { title: '2019 Goal', base: 104340 },
+        { title: 'Actual', base: 108243 },
+      ],
+      2: [
+        { title: 'Forecast', base: 7210 },
+        { title: '2019 Goal', base: 6340 },
+        { title: 'Actual', base: 8243 },
+      ]
+    }
+  },
+  fullPotential_1: {
+    nextWeek: {
+      1: [
+        { title: 'Forecast', base: 39 },
+        { title: '2019 Goal', base: 42 },
+        { title: 'Actual', base: 36 },
+      ],
+      2: [
+        { title: 'Forecast', base: 39 },
+        { title: '2019 Goal', base: 43 },
+        { title: 'Actual', base: 36 },
+      ],
+    }
+  },
+  fullPotential_2: {
+    nextWeek: {
+      1: [
+        { title: 'Forecast', base: 32100000 },
+        { title: '2019 Goal', base: 33300000 },
+        { title: 'Actual', base: 32200000 },
+      ],
+      2: [
+        { title: 'Forecast', base: 1586000 },
+        { title: '2019 Goal', base: 1206000 },
+        { title: 'Actual', base: 2211000 },
+      ],
+    }
+  },
   driversOfPotential: {
     nextWeek: [
-      { title: 'Inspection', base: 21, risk: 8, opportunity: 36 },
-      { title: 'CFNA', base: 18, risk: 14, opportunity: 40 },
-      { title: 'Alignment', base: 33, risk: 19, opportunity: 35 },
-      { title: 'Suggested_Services', base: 30, risk: 21, opportunity: 20 },
+      { title: 'Inspection', repeat: 21, fleet: 8, new: 36 },
+      { title: 'CFNA', repeat: 18, fleet: 14, new: 40 },
+      { title: 'Alignment', repeat: 33, fleet: 19, new: 35 },
+      { title: 'Suggested_Services', repeat: 30, fleet: 21, new: 20 },
     ],
     nextMonth: [
-      { title: 'Inspection', base: 19, risk: 12, opportunity: 34 },
-      { title: 'CFNA', base: 20, risk: 15, opportunity: 35 },
-      { title: 'Alignment', base: 29, risk: 19, opportunity: 34 },
-      { title: 'Suggested_Services', base: 31, risk: 18, opportunity: 21 },
+      { title: 'Inspection', repeat: 19, fleet: 12, new: 34 },
+      { title: 'CFNA', repeat: 20, fleet: 15, new: 35 },
+      { title: 'Alignment', repeat: 29, fleet: 19, new: 34 },
+      { title: 'Suggested_Services', repeat: 31, fleet: 18, new: 21 },
     ],
     nextQuarter: [
-      { title: 'Inspection', base: 23, risk: 11, opportunity: 33 },
-      { title: 'CFNA', base: 16, risk: 16, opportunity: 36 },
-      { title: 'Alignment', base: 34, risk: 17, opportunity: 32 },
-      { title: 'Suggested_Services', base: 29, risk: 18, opportunity: 22 },
+      { title: 'Inspection', repeat: 23, fleet: 11, new: 33 },
+      { title: 'CFNA', repeat: 16, fleet: 16, new: 36 },
+      { title: 'Alignment', repeat: 34, fleet: 17, new: 32 },
+      { title: 'Suggested_Services', repeat: 29, fleet: 18, new: 22 },
     ],
     fullYear: [
-      { title: 'Inspection', base: 20, risk: 9, opportunity: 34 },
-      { title: 'CFNA', base: 17, risk: 15, opportunity: 38 },
-      { title: 'Alignment', base: 34, risk: 18, opportunity: 33 },
-      { title: 'Suggested_Services', base: 29, risk: 22, opportunity: 18 },
+      { title: 'Inspection', repeat: 20, fleet: 9, new: 34 },
+      { title: 'CFNA', repeat: 17, fleet: 15, new: 38 },
+      { title: 'Alignment', repeat: 34, fleet: 18, new: 33 },
+      { title: 'Suggested_Services', repeat: 29, fleet: 22, new: 18 },
     ],
   },
   laborAsDriver: {
@@ -153,5 +195,5 @@ export default {
       { customerPotential: COLORS.orange, availability: COLORS.orange, inventory: COLORS.orange, daysOfSupply: COLORS.orange, gmroi: COLORS.orange },
       { customerPotential: COLORS.orange, availability: COLORS.orange, inventory: COLORS.red, daysOfSupply: COLORS.orange, gmroi: COLORS.red },
     ],
-  },  
+  },
 };

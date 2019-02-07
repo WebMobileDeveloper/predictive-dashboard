@@ -11,7 +11,7 @@ const DriversOfPotential = () => (
         direction={'column'}
         style={{ paddingBottom: 90, paddingLeft: 20 }}>
 
-    <HeadPage head={'Potential of your customers'}/>
+    <HeadPage head={'Store Potential from Bosses'}/>
 
     <AlertBox title={'ALL STORES'}/>
 
@@ -20,7 +20,7 @@ const DriversOfPotential = () => (
       <Route exact path={`/DriversOfPotential/period/:stage`} render={() => <ChartContainer dataCategory="driversOfPotential" total={true}/>}/>
     </Grid>
 
-    <SegmentHeader title={'By Customer Segment'}/>
+    <SegmentHeader title={'Potential by Service Type'}/>
     <Grid item xs={12}>
       <Route exact path={`/DriversOfPotential/period/:stage`} render={() => <ChartContainer dataCategory="driversOfPotential"/>}/>
     </Grid>

@@ -12,8 +12,6 @@ const Chart = ({ data }) => {
     'Alignment': '#8FAADC',
     'Suggested_Services': '#333F50'
   }
-  console.log("=============", fillColors[data[0].title])
-  console.log("========", data)
 
   return (
     <BarChart data={data}
@@ -24,9 +22,10 @@ const Chart = ({ data }) => {
       <XAxis type="number" domain={[dataMin => Math.min(0, dataMin), dataMax => Math.max(20, dataMax)]} hide />
       <YAxis type="category" dataKey="title" hide />
       <Tooltip style={{ visiblity: "visible" }} />
-      <Bar dataKey="additional" style={{ visiblity: 'visible', fontSize: '8px' }} background={{ fill: '#eee' }} fill={fillColors[data[0].title]} >
+      <Bar dataKey="additional"  background={{ fill: '#eee' }} fill={fillColors[data[0].title]} >
         {/* <Label position="center" style={{ visiblity: "show" }} >{data[0].title}</Label> */}
-        <LabelList dataKey="title" />
+        {/* <LabelList dataKey="title" /> */}
+        <LabelList dataKey="title" fill="white" style={{ fontSize: '14px' }} />
       </Bar>
     </BarChart>
   );

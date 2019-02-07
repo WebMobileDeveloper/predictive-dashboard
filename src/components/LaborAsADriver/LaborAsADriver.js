@@ -11,16 +11,16 @@ const LaborAsADriver = () => (
         direction={'column'}
         style={{ paddingBottom: 90, paddingLeft: 20 }}>
 
-    <HeadPage head={'Drivers of Potential'}/>
+    <HeadPage head={'Drivers of Store Performance from Bosses'}/>
 
     <AlertBox title={'ALL STORES'}/>
 
-    <SegmentHeader title={'Drivers for all customers'}/>
+    <SegmentHeader title={'Drivers of Revenue from Bosses'}/>
     <Grid item xs={12}>
       <Route exact path={`/LaborAsADriver/period/:stage`} render={() => <ChartContainer dataCategory="laborAsDriver" total={true}/>}/>
     </Grid>
 
-    <SegmentHeader title={'Drivers for each Customer Segment'}/>
+    <SegmentHeader title={'Drivers of Boss Lead Generation'}/>
     <Grid item xs={12}>
       <Route exact path={`/LaborAsADriver/period/:stage`} render={() => <ChartContainer dataCategory="laborAsDriver"/>}/>
     </Grid>

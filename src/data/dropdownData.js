@@ -63,13 +63,6 @@ export const DROPDOWN_REGIONS = [
 export const DROPDOWN_STORES = [
   { id: 1, parent_id: 1, text: "59047" },
   { id: 2, parent_id: 1, text: "59048" },
-  { id: 3, parent_id: 1, text: "59049" },
-  { id: 4, parent_id: 1, text: "59050" },
-  { id: 5, parent_id: 1, text: "59051" },
-  { id: 6, parent_id: 1, text: "59052" },
-  { id: 7, parent_id: 1, text: "59053" },
-  { id: 8, parent_id: 1, text: "59054" },
-  { id: 9, parent_id: 1, text: "59055" },
 ]
 
 export const DROPDOWN_LOCATIONS = [

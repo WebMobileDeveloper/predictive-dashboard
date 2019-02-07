@@ -11,29 +11,30 @@ import Analysis from '../components/Analysis';
 import Benchmark from '../components/Benchmark';
 import Availability from '../components/Availability';
 
-const AppRoutes = () => (
+const AppRoutes = ({dropDownData}) => (
   <Switch>
-    <Redirect exact from={'/Scorecard'} to={'/FullPotential/period/nextWeek'}/>
-    <Route exact path={'/FullPotential/period/:stage'} component={FullPotential}/>
+    <Redirect exact from={'/'} to={'/FullPotential/period/nextWeek'} />
+    <Redirect exact from={'/Scorecard'} to={'/FullPotential/period/nextWeek'} />
+    <Route exact path={'/FullPotential/period/:stage'} component={() => <FullPotential dropDownData={dropDownData} />} />
 
-    <Redirect exact from={'/Potential'} to={'/DriversOfPotential/period/nextWeek'}/>
-    <Route exact path={'/DriversOfPotential/period/:stage'} component={DriversOfPotential}/>
+    <Redirect exact from={'/Potential'} to={'/DriversOfPotential/period/nextWeek'} />
+    <Route exact path={'/DriversOfPotential/period/:stage'} component={DriversOfPotential} />
 
-    <Redirect exact from={'/PerformanceDrivers'} to={'/LaborAsADriver/period/nextWeek'}/>
-    <Route exact path={'/LaborAsADriver/period/:stage'} component={LaborAsADriver}/>
+    <Redirect exact from={'/PerformanceDrivers'} to={'/LaborAsADriver/period/nextWeek'} />
+    <Route exact path={'/LaborAsADriver/period/:stage'} component={LaborAsADriver} />
 
-    <Redirect exact from={'/Effectiveness'} to={'/Effectiveness/period/nextWeek'}/>
-    <Route exact path={'/Effectiveness/period/:stage'} component={Effectiveness}/>
+    <Redirect exact from={'/Effectiveness'} to={'/Effectiveness/period/nextWeek'} />
+    <Route exact path={'/Effectiveness/period/:stage'} component={Effectiveness} />
 
-    <Route exact path={'/Support'} component={Opportunity}/>
+    <Route exact path={'/Support'} component={Opportunity} />
 
-    <Route exact path={'/Promotions'} component={Promotions}/>
+    <Route exact path={'/Promotions'} component={Promotions} />
 
-    <Route exact path={'/Analysis'} component={Analysis}/>
+    <Route exact path={'/Analysis'} component={Analysis} />
 
-    <Route exact path={'/Benchmark'} component={Benchmark}/>
+    <Route exact path={'/Benchmark'} component={Benchmark} />
 
-    <Route exact path={'/Availability'} component={Availability}/>
+    <Route exact path={'/Availability'} component={Availability} />
   </Switch>
 );
 

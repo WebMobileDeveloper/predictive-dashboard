@@ -29,7 +29,7 @@ const styles = theme => ({
     // position: 'absolute',
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
-    
+
   },
   flex: {
     flex: 1,
@@ -37,7 +37,7 @@ const styles = theme => ({
   buttonGroup: {
     right: 0,
     float: 'right',
-    paddingLeft:0
+    paddingLeft: 0
   },
   dropdownContent: {
     marginLeft: 0,
@@ -62,11 +62,11 @@ const styles = theme => ({
 });
 
 class MainPanel extends React.Component {
-  
+
   state = {
-    brands : [],
-    selectedBrand:"",
-    selectedRegion:"",
+    brands: [],
+    selectedBrand: "",
+    selectedRegion: "",
     selectedStore: "",
     regions: [],
     stores: []
@@ -74,89 +74,91 @@ class MainPanel extends React.Component {
 
   componentDidMount() {
 
-    this.setState({brands: DROPDOWN_BRANDS});
+    this.setState({ brands: DROPDOWN_BRANDS });
   }
 
   brandChangeHandler = e => {
     let val = e.target.value;
     let regions = DROPDOWN_REGIONS.filter(v => v.parent_id == val);
-    console.log(regions);
-    this.setState({regions, selectedBrand:val, stores:[]})
+    this.setState({ regions, selectedBrand: val, stores: [] })
   }
   regionChangeHandler = e => {
     let val = e.target.value;
     let stores = DROPDOWN_STORES.filter(v => v.parent_id == val);
-    console.log(stores);
-    this.setState({stores, selectedRegion:val})
+    this.setState({ stores, selectedRegion: val })
   }
 
   storeChangeHandler = e => {
     let val = e.target.value;
-    this.setState({selectedStore:val})
+    this.setState({ selectedStore: val })
   }
- 
+
   render() {
     const { classes } = this.props;
-    const {brands, regions, stores} = this.state;
-    
+    const { brands, regions, stores } = this.state;
+    const dropDownData = {
+      selectedBrand: this.state.selectedBrand,
+      selectedRegion: this.state.selectedRegion,
+      selectedStore: this.state.selectedStore,
+    }
     return (
       <Router basename={process.env.PUBLIC_URL}>
 
         <Grid container
-              spacing={0}>
+          spacing={0}>
 
           <Grid item xs={12}>
             <AppBar position="static"
-                    className={classes.content} style={{backgroundColor:'red'}}>
+              className={classes.content} style={{ backgroundColor: 'red' }}>
               <Toolbar className={classes.buttonGroup}>
                 <div className={classes.dropdownContent}>
-                <Select native 
-                  value={this.state.selectedBrand}
-                  className={classes.dropdown}
-                  onChange={this.brandChangeHandler}
-                >
+                  <Select native
+                    value={this.state.selectedBrand}
+                    className={classes.dropdown}
+                    onChange={this.brandChangeHandler}
+                  >
                     <option value="" className={classes.dropdownitem}>All Brands</option>
                     {brands.map((b, i) => (
                       <option key={i} value={b.id} className={classes.dropdownitem}>{b.text}</option>
                     ))}
-                </Select>
-                <Select native value={this.state.selectedRegion} className={classes.dropdown} onChange={this.regionChangeHandler}>
-                  <option value="" className={classes.dropdownitem}>All Regions</option>
-                  {regions.map((b,i) => (
-                    <option key={i} value={b.id} className={classes.dropdownitem}>{b.text}</option>
-                  ))}
-                </Select>
-                <Select native value={this.state.selectedStore} className={classes.dropdown} onChange={this.storeChangeHandler}>
-                  <option value="" className={classes.dropdownitem}>All Stores</option>
-                  {stores.map((b, i) => (
-                    <option key={i} value={b.id} className={classes.dropdownitem}>{b.text}</option>
-                  ))}
-                </Select>
+                  </Select>
+                  <Select native value={this.state.selectedRegion} className={classes.dropdown} onChange={this.regionChangeHandler}>
+                    <option value="" className={classes.dropdownitem}>All Regions</option>
+                    {regions.map((b, i) => (
+                      <option key={i} value={b.id} className={classes.dropdownitem}>{b.text}</option>
+                    ))}
+                  </Select>
+                  {this.state.selectedRegion && <Select native value={this.state.selectedStore} className={classes.dropdown} onChange={this.storeChangeHandler}>
+                    <option value="" className={classes.dropdownitem}>All Stores</option>
+                    {stores.map((b, i) => (
+                      <option key={i} value={b.id} className={classes.dropdownitem}>{b.text}</option>
+                    ))}
+                  </Select>}
                 </div>
                 <IconButton color="default">
-                  <Notifications/>
+                  <Notifications />
                 </IconButton>
                 <IconButton color="default">
-                  <MailOutline/>
+                  <MailOutline />
                 </IconButton>
                 <IconButton color="default">
-                  <Settings/>
+                  <Settings />
                 </IconButton>
               </Toolbar>
             </AppBar>
           </Grid>
 
           <Grid container
-                direction={'row'}
-                alignItems={'stretch'}
-                className={classes.content}
-                spacing={0}
-                wrap={'nowrap'}>
+            direction={'row'}
+            alignItems={'stretch'}
+            className={classes.content}
+            spacing={0}
+            wrap={'nowrap'}>
 
-            <SideBar menu={MENU_NAV}/>
+            <SideBar menu={MENU_NAV} />
 
             <Grid item xs={12}>
-              <AppRoutes/>
+              <AppRoutes dropDownData={dropDownData}/>
             </Grid>
 
           </Grid>

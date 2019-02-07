@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import Select from 'material-ui/Select';
 import { HeadPage, FooterNav, SegmentHeader, AlertBox } from '../shared';
 import ChartContainer from './BarStack/ChartContainer';
+import ChartContainer1 from './BarStack/ChartContainer_1';
 import { Route } from 'react-router-dom';
 import { DROPDOWN_LOCATIONS } from '../../data/dropdownData';
 
@@ -21,18 +22,38 @@ const styles = theme => ({
   },
 });
 const data = {
-  1: [
-    { title: 'Inspection', additional: 10, increase: 1651 },
-    { title: 'CFNA', additional: 8, increase: 1000 },
-    { title: 'Alignment', additional: 12, increase: 2047.50 },
-    { title: 'Suggested_Services', additional: 18, increase: 3213 },
-  ],
-  2: [
-    { title: 'Inspection', additional: 15, increase: 2751 },
-    { title: 'CFNA', additional: 5, increase: 600 },
-    { title: 'Alignment', additional: 12, increase: 2154 },
-    { title: 'Suggested_Services', additional: 20, increase: 4104 },
-  ],
+  1: {
+    chartData: [
+      { title: 'Inspection', additional: 10, increase: 1651 },
+      { title: 'CFNA', additional: 8, increase: 1000 },
+      { title: 'Alignment', additional: 12, increase: 2047.50 },
+      { title: 'Suggested_Services', additional: 18, increase: 3213 },
+    ],
+    detail: [
+      {
+        title: "Paid Search",
+        chartData: [
+          { title: "Planned Spend", value: 5000000 },
+          { title: "Actual Spend", value: 5000000 },
+        ]
+      },
+      {
+        title: "Paid Search",
+        chartData: [
+          { title: "Planned Spend", value: 5000000 },
+          { title: "Actual Spend", value: 5000000 },
+        ]
+      },
+    ]
+  },
+  2: {
+    chartData: [
+      { title: 'Inspection', additional: 15, increase: 2751 },
+      { title: 'CFNA', additional: 5, increase: 600 },
+      { title: 'Alignment', additional: 12, increase: 2154 },
+      { title: 'Suggested_Services', additional: 20, increase: 4104 },
+    ]
+  },
 }
 class Opportunity extends React.Component {
 
@@ -53,14 +74,11 @@ class Opportunity extends React.Component {
 
   locationChangeHandler = e => {
     let val = e.target.value;
-    console.log(val)
-    // console.log(regions);
     // this.setState({ regions, selectedBrand: val, stores: [] })
   }
   // regionChangeHandler = e => {
   //   let val = e.target.value;
   //   let stores = DROPDOWN_STORES.filter(v => v.parent_id == val);
-  //   console.log(stores);
   //   this.setState({ stores, selectedRegion: val })
   // }
 
@@ -90,7 +108,10 @@ class Opportunity extends React.Component {
       },
 
     }
-
+    let total = 0;
+    data[this.state.selectedLocation].chartData.map((item, i) => {
+      total += item.increase;
+    })
     return (
       <Grid container
         spacing={0}
@@ -98,7 +119,7 @@ class Opportunity extends React.Component {
         style={{ paddingBottom: 90, paddingLeft: 20 }}>
 
         <Grid item xs={12}>
-          <HeadPage head={'Opportunity by Location'} style={styles.header} headStyle={styles.headerTitle} />
+          <HeadPage head={'Support for Improving Store Performance'} style={styles.header} headStyle={styles.headerTitle} />
           <Select native
             value={this.state.selectedLocation}
             // className={classes.dropdown}
@@ -112,47 +133,72 @@ class Opportunity extends React.Component {
         </Grid>
         <Grid item xs={12} style={{ paddingLeft: 48 }}>
           <Grid item xs={12}>
-            <h2>Week of:<span style={{ color: "#2CAEE1", marginLeft: "20px" }}>February 4, 2018</span></h2>
+            <h2>Week of:<span style={{ color: "#2CAEE1", marginLeft: "20px" }}>February 4, 2019</span></h2>
             <Grid container spacing={0} >
               <Grid item xs={6}>
-                <SegmentHeader title={'Recommended options'} />
-                <table>
+                <SegmentHeader title={'Areas of Focus'} />
+                <table className="support-table" cellpadding="0" cellspacing="0">
                   <thead>
                     <tr>
+                      <th width="100"></th>
                       <th></th>
-                      <th></th>
-                      <th>Addtional Services</th>
-                      <th>Increase in Revenue</th>
+                      <th className="center" width="70">Addtional Services</th>
+                      <th className="center" width="150">Increase in Revenue</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {data[this.state.selectedLocation].map((item, i) =>
+                    {data[this.state.selectedLocation].chartData.map((item, i) =>
                       <tr key={i}>
-                        {i == 0 && <td rowSpan="4">Drivers</td>}
+                        {i == 0 && <td rowSpan="4" className="vertical-top">Drivers</td>}
                         <td><ChartContainer data={[item]} /></td>
                         {/* <td><ChartContainer data={data[this.state.selectedLocation]} /></td> */}
-                        <td>{item.additional}</td>
-                        <td>{item.increase}</td>
+                        <td className="center"><div className="gray-bg">{item.additional}</div></td>
+                        <td className="center"><div className="gray-bg">${item.increase}</div></td>
                       </tr>
                     )}
                     <tr>
-                      <td><p>Media Spend</p></td>
-                      <td colSpan="3">
+                      <td></td>
+                      <td></td>
+                      <td className="center">
+                        <p>Total Change</p>
+                      </td>
+                      <td className="center">
+                        <p>${total}</p>
+                      </td>
+                    </tr>
+                    <br />
+                    <tr>
+                      <td><p>Media&emsp; Spend</p></td>
+                      <td colSpan="3" >
                         <p>Monthly Regional spend: $<span>500,000</span></p>
                         <p>Paid Search Spend effecting this store: $<span>100,000</span></p>
                       </td>
                     </tr>
+                    <br />
                     <tr>
-                      <td><p>Current Promotion</p></td>
+                      <td ><p>Current Promotion</p></td>
                       <td colSpan="3">
                         <p>Radio, Print, Paid Search</p>
                       </td>
                     </tr>
                   </tbody>
                 </table>
+
               </Grid>
-              <Grid item xs={3}><SegmentHeader title={'How to ...'} /></Grid>
+              {/* <Grid item xs={3}><SegmentHeader title={'How to ...'} /></Grid> */}
             </Grid>
+            {/* <Grid container spacing={0} style={{ marginTop: "50px" }}>
+              <Grid item xs={12}>
+                <h3>Boss Engagement and Conversion Support</h3>
+              </Grid>
+              <ChartContainer1 dataCategory="opportunity" />
+              <table>
+                <tbody>
+
+                </tbody>
+              </table>
+            </Grid>
+           */}
           </Grid>
 
 

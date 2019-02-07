@@ -39,14 +39,15 @@ const styles = theme => ({
 
 class SideBar extends React.Component {
 
-  state = { open: true };
+  state = { open: true, selectedMenuIndex: 0 };
 
-  handleClick() {
-    this.setState({ open: !this.state.open });
+  handleClick(text, selectedMenuIndex) {
+    this.props.history.push(`/${text.replace(new RegExp(' ', 'g'), '')}`);
+    this.setState({ open: !this.state.open, selectedMenuIndex });
   };
 
   render() {
-    const { menu, classes, history } = this.props;
+    const { menu, classes } = this.props;
 
     return (
       <Drawer type="permanent"
@@ -60,40 +61,30 @@ class SideBar extends React.Component {
           }>
           {menu.map((menuItem, i) =>
 
-            i == 2 ?
-              <div key={i}>
-                <ListItem key={menuItem.id}
-                  button
-                  divider
-                  onClick={() => { history.push(`/${menuItem.text.replace(new RegExp(' ', 'g'), '')}`); this.handleClick() }}
-                  className={styles.listItem}>
-                  <ListItemIcon>
-                    {menuItem.icon}
-                  </ListItemIcon>
-                  <ListItemText inset primary={menuItem.text} className="textColor" />
-                  {this.state.open ? <ExpandLess style={{ color: 'white' }} /> : <ExpandMore style={{ color: 'white' }} />}
-                </ListItem>
-                {/* <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button >
-                <ListItemText inset primary="Store #17264" />
-              </ListItem>
-              <ListItem button >
-                <ListItemText inset primary="Store #17264" />
-              </ListItem>
-            </List>
-          </Collapse> */}
-              </div>
-              : <ListItem key={i}
+            <div key={i} className={this.state.selectedMenuIndex == i ? "selected-menu" : ''}>
+              <ListItem key={menuItem.id}
                 button
                 divider
-                onClick={() => history.push(`/${menuItem.text.replace(new RegExp(' ', 'g'), '')}`)}
+                onClick={() => { this.handleClick(menuItem.text, i) }}
                 className={styles.listItem}>
                 <ListItemIcon>
                   {menuItem.icon}
                 </ListItemIcon>
                 <ListItemText inset primary={menuItem.text} className="textColor" />
+                {/* {i == 2 && (this.state.open ? <ExpandLess style={{ color: 'white' }} /> : <ExpandMore style={{ color: 'white' }} />)} */}
               </ListItem>
+              {/* {i == 2 && <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItem button >
+                    <ListItemText inset primary="Store #17264" />
+                  </ListItem>
+                  <ListItem button >
+                    <ListItemText inset primary="Store #17264" />
+                  </ListItem>
+                </List>
+              </Collapse>} */}
+            </div>
+
           )}
         </List>
 

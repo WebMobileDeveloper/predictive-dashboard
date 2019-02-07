@@ -4,10 +4,8 @@ import _ from 'lodash';
 
 const getFullPotentialData = (ChartComponent) => (
   (props) => {
-    const { dataCategory, total, match } = props;
-
+    let { dataCategory, total, match } = props;
     let retrievedData;
-
     switch (match.params.stage) {
       case 'nextWeek':
         retrievedData = data[dataCategory].nextWeek;
@@ -40,7 +38,50 @@ const getFullPotentialData = (ChartComponent) => (
       }
     }
 
-    return <ChartComponent data={retrievedData} {...props}/>;
+    return <ChartComponent data={retrievedData} {...props} category={dataCategory} />;
+  }
+);
+export const getStoreData = (ChartComponent) => (
+  (props) => {
+    let { dataCategory, total, match, storeId } = props;
+    // storeId = storeId || ""
+    console.log("=========props", storeId)
+    storeId = storeId || "1";
+    let retrievedData;
+
+    switch (match.params.stage) {
+      case 'nextWeek':
+        retrievedData = data[dataCategory].nextWeek[storeId];
+        break;
+      case 'nextMonth':
+        retrievedData = data[dataCategory].nextMonth;
+        break;
+      case 'nextQuarter':
+        retrievedData = data[dataCategory].nextQuarter;
+        break;
+      case '2018':
+        retrievedData = data[dataCategory].fullYear;
+        break;
+      default:
+        retrievedData = data[dataCategory].nextWeek;
+    }
+
+    if (total) {
+      switch (dataCategory) {
+        case 'fullPotential':
+          retrievedData = [getTotalAllAllocationsData(retrievedData)];
+          break;
+        case 'driversOfPotential':
+          retrievedData = [getTotalBySegmentData(retrievedData)];
+          break;
+        case 'laborAsDriver':
+          retrievedData = [getTotalAllAllocationsData(retrievedData)];
+          break;
+        default:
+      }
+    }
+
+    return <ChartComponent data={retrievedData} {...props} category={dataCategory} />;
   }
 );
 
@@ -66,10 +107,10 @@ function getTotalAllAllocationsData(data) {
 
 function getTotalBySegmentData(data) {
   return _.reduce(data, (result, value, index) => ({
-    title: 'All Segments',
-    base: index === 0 ? result.base : (result.base * index + value.base) / (index + 1),
-    risk: index === 0 ? result.risk : (result.risk * index + value.risk) / (index + 1),
-    opportunity: index === 0 ? result.opportunity : (result.opportunity * index + value.opportunity) / (index + 1),
+    title: 'ALL Bosses / ALL Services',
+    repeat: index === 0 ? result.repeat : (result.repeat * index + value.repeat) / (index + 1),
+    fleet: index === 0 ? result.fleet : (result.fleet * index + value.fleet) / (index + 1),
+    new: index === 0 ? result.new : (result.new * index + value.new) / (index + 1),
   }));
 }
 

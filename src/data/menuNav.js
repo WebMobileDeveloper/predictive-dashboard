@@ -69,7 +69,7 @@ export const MENU_NAV = [
   // { id: 4, text: 'Effectiveness', icon: <DataUsage/> },
   // { id: 5, text: 'Opportunity', icon: <Timeline/> },
   { id: 4, text: 'Support', icon: <AnalysisIcon/> },
-  { id: 5, text: 'Promotions', icon: <PromotionsIcon/> },
+  // { id: 5, text: 'Promotions', icon: <PromotionsIcon/> },
   // { id: 8, text: 'Analysis', icon: <AnalysisIcon/> },
   // { id: 9, text: 'Availability', icon: <AvailabilityIcon/> },
   // { id: 10, text: 'Benchmark', icon: <BenchmarkIcon/> }
